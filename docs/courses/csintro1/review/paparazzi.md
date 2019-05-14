@@ -69,6 +69,7 @@ Emma decides that she does not like the Stars being destroyed when the ``||varia
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy,
     Camera,
     Star
@@ -85,7 +86,7 @@ Collette wants to add in a splash screen that shows the score the player reached
 ```blocks
 info.onCountdownEnd(function () {
     game.splash("")
-    game.over()
+    game.over(false)
 })
 ```
 

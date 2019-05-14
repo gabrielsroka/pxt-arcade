@@ -10,6 +10,8 @@ In this activity, students will:
 
 ## Concept: Tiles
 
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-array-tile1)
+
 ## Example #1: Getting and Using Tiles
 
 1. Review the code below
@@ -19,6 +21,7 @@ In this activity, students will:
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy
 }
 let myTile: tiles.Tile = null
@@ -99,6 +102,7 @@ The ``||scene:on top of myTile place mySprite||`` allows for sprites to be place
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy
 }
 let mySprite: Sprite = null
@@ -191,6 +195,7 @@ This example sets two random tiles from the first two rows of walls to be tiles 
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy,
     Pizza
 }
@@ -312,6 +317,8 @@ b 5 5 5 5 d d 4 4 4 4 . . . . .
 
 Using the concepts from tasks #1 and #2, the development of multi-level games becomes much easier. This is can be done by creating an array of tile maps and transitioning through the levels, while using the blocks discussed earlier in this activity to help set up and move through the levels.
 
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-array-tile2)
+
 ## Example #3: Multiple Tile maps
 
 1. Review the code below
@@ -321,6 +328,7 @@ Using the concepts from tasks #1 and #2, the development of multi-level games be
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy
 }
 let player: Sprite = null

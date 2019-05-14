@@ -118,6 +118,57 @@ namespace pxt.editor {
                 });
             });
         });
+
+        /**
+         * Upgrade for scene.setTile() which went from being expandable to not
+         */
+        U.toArray(dom.querySelectorAll("block[type=gamesettile]")).forEach(block => {
+            const mutation = getMutation(block);
+
+            if (!mutation) return; // Already upgraded
+
+            const expanded = mutation.getAttribute("_expanded") !== "0";
+            block.removeChild(mutation);
+
+            if (expanded) {
+                // The value input must already be in the XML, so no changes needed
+                return;
+            }
+            else {
+                // There might be a value input present, but we should remove it
+                // and replace it with the default to replicate the unexpanded behavior
+                const value = getChildNode(block, "value", "name", "wall");
+                if (value) {
+                    block.removeChild(value);
+                }
+
+                const newValue = replaceToggle("wall", "toggleOnOff", "on", "false");
+                block.appendChild(newValue);
+            }
+        });
+        /**
+         * Upgrade for game.over() which went from being expandable twice to being expandable once
+         */
+        if (pxt.semver.strcmp(pkgTargetVersion || "0.0.0", "0.10.0") < 0) {
+            U.toArray(dom.querySelectorAll("block[type=gameOver]")).forEach(block => {
+                const mutation = getMutation(block);
+                const value = getChildNode(block, "value", "name", "win");
+                const expansion = mutation.getAttribute("_expanded")
+
+                if (expansion !== "0") {
+                    // Decrement expansion level, as win is now required
+                    mutation.setAttribute("_expanded", (Number(expansion) - 1) + "");
+                } else {
+                    // Remove old value to replace it default to maintain current behavior
+                    if (value) {
+                        block.removeChild(value);
+                    }
+
+                    const newValue = replaceToggle("win", "toggleWinLose", "win", "false");
+                    block.appendChild(newValue);
+                }
+            });
+        }
     }
 
     function changeVariableToSpriteReporter(varBlockOrShadow: Element, reporterName: string) {
@@ -154,6 +205,16 @@ namespace pxt.editor {
         return undefined;
     }
 
+    function getMutation(parent: Element) {
+        for (let i = 0; i < parent.children.length; i++) {
+            const child = parent.children.item(i);
+            if (child.tagName === "mutation") {
+                return child;
+            }
+        }
+        return undefined;
+    }
+
     initExtensionsAsync = function (opts: pxt.editor.ExtensionOptions): Promise<pxt.editor.ExtensionResult> {
         pxt.debug('loading arcade target extensions...')
 
@@ -162,5 +223,21 @@ namespace pxt.editor {
         };
 
         return Promise.resolve<pxt.editor.ExtensionResult>(res);
+    }
+
+    function replaceToggle(valueName: string, shadowType: string, fieldName: string, fieldValue: string) {
+        const newValue = document.createElement("value");
+        newValue.setAttribute("name", valueName);
+
+        const shadow = document.createElement("shadow");
+        shadow.setAttribute("type", shadowType);
+
+        const field = document.createElement("field");
+        field.setAttribute("name", fieldName);
+        field.textContent = fieldValue;
+
+        shadow.appendChild(field);
+        newValue.appendChild(shadow);
+        return newValue;
     }
 }

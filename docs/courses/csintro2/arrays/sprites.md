@@ -2,15 +2,13 @@
 
 So far we have used arrays of numbers and strings. We will see that arrays can be used with any variable type, including sprites.
 
-In this activity, we will use arrays of sprites to to create unique behaviors for the characters in our games, as well as introduce the basics of artificial intelligence for our enemy characters.
+In this activity, we will use arrays of sprites to create unique behaviors for the characters in our games, as well as introduce the basics of artificial intelligence for our enemy characters.
 
 In this activity, students will:
 * Create arrays of sprites
 * Interact with multiple sprites using arrays
 * Use ``||sprites:array of sprites of kind||``
 * Implement "following" behavior for enemies
-
-## Coming Soon: VIDEO
 
 ## Concept: Creating Sprite Arrays
 
@@ -19,6 +17,8 @@ Creating arrays of sprites follow a similar process as creating arrays of number
 ![creating an array of sprites](/static/courses/csintro2/arrays/create-sprite-array.gif)
 
 A sprite array is useful when implementing the same behavior for several sprites at once.
+
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-array-sprite1)
 
 ## Example #1: Moving all Asteroids
 
@@ -29,6 +29,7 @@ A sprite array is useful when implementing the same behavior for several sprites
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy,
     Asteroid
 }
@@ -95,7 +96,7 @@ c a 8 a a c c c c a a f f f 8 a
 ## Student Task #1: Moving a Random Asteroid
 
 1. Start with the code from example #1
-2. Instead of moving every asteroid, use select a random asteroid from ``||variables:my sprite array||`` and move only that asteroid when the ``||controller:A||`` button is pressed
+2. Instead of moving every asteroid, select a random asteroid from ``||variables:my sprite array||`` and move only that asteroid when the ``||controller:A||`` button is pressed
 3. **Challenge:** choose another random asteroid, and have it ``||sprites:say||`` "woosh" for 300 ms. Are the two randomly chosen asteroids the same? (Can they be the same?)
 
 ## Concept: Arrays from Functions
@@ -103,6 +104,8 @@ c a 8 a a c c c c a a f f f 8 a
 Building arrays by adding in values is a common and useful coding pattern. Arrays can be even more useful when they are returned by functions. For instance, a function could return multiple related values at once.
 
 The ``||sprites:array of sprites of kind||`` block (located in the ``||arrays:arrays||`` category) is one example of a function that will return an array with all of the sprites currently in the game of a particular ``||sprites:kind||``. This makes it easier to implement behaviors for several sprites like we did in example #1, especially as  sprites are continually created and destroyed as we play the game.
+
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-array-sprite2)
 
 ## Example #2a: Using ``||sprites:array of sprites of kind||``
 
@@ -113,6 +116,7 @@ The ``||sprites:array of sprites of kind||`` block (located in the ``||arrays:ar
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy,
     Asteroid
 }
@@ -153,6 +157,7 @@ c a 8 a a c c c c a a f f f 8 a
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy,
     Firework
 }
@@ -192,6 +197,8 @@ Using ``||sprites:array of sprites of kind||``, we can easily address both of th
 5. Select a firework from ``||variables:sprite list||`` at random, and store that in the variable ``||variables:origin||``. Replace all references to ``||variables:firework||`` in the event to refer to this new variable
 6. **Challenge:** change the ``||controller:on any button pressed||`` event to only trigger when the ``||controller:A||`` button is pressed, and make a ``||controller:on B button pressed||`` event that will create a new firework. Make sure to use either a ``||functions:function||`` or an ``||sprites:on created sprite of kind||`` event to reduce the redundancy between the new event and the ``||loops:on start||`` block
 
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-array-sprite2task)
+
 ## Example #3: Tracking with a Single Sprite
 
 It is fairly common to want sprites to follow other sprites; for example, enemy sprites that want to damage the player, or faithful ally accompanying the player on an adventure.
@@ -205,6 +212,7 @@ We can implement this behavior easily using ``||logic:logic||`` blocks in an ``|
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy
 }
 let enemy: Sprite = null
@@ -241,6 +249,8 @@ game.onUpdate(function () {
 ```
 
 This is also a great occasion to use arrays - that way, we can have more than a single enemy follow the player.
+
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-array-sprite3)
 
 ## Student Task #3: Tracking with All Sprites of a Kind
 

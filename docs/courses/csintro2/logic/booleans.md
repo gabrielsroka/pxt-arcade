@@ -7,6 +7,7 @@ Comparison statements are centered around **Boolean Logic**, with the conditions
 The values of these expressions are stored and used as `boolean` variables. Whenever we see the term boolean, it means we have something that can evaluate to ``||logic:true||`` or ``||logic:false||``.
 
 In these activities students will work with:
+
 * Boolean flags and values (``||logic:true||`` and ``||logic:false||``)
 * ``||logic:and||`` 
 * ``||logic:or||``
@@ -18,7 +19,7 @@ Boolean values are regularly used to help maintain the **state** of a given piec
 
 For example, ``||sprites:stay in screen||`` is a flag that we have set that forces the sprite to stay within the bounds of the screen when set to ``||logic:true||``.
 
-## Coming Soon: VIDEO
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-logic-boolean1)
 
 ## Example #1: Are you hungry?
 
@@ -53,6 +54,8 @@ In this example, ``||variables:isHungry||`` is a flag that will change the behav
 
 When we have a boolean value, we have seen that we can write code that runs when it is true using a simple ``||logic:if||`` statement. However, we can also run code for when the boolean is false. This is done with the ``||logic:not||`` block.
 
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-logic-boolean2)
+
 ## Example #2: ``||logic:not||``
 
 [Example #2](https://makecode.com/_Ug9eu36KRW2o)
@@ -60,6 +63,7 @@ When we have a boolean value, we have seen that we can write code that runs when
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy
 }
 let mySprite: Sprite = null
@@ -112,11 +116,14 @@ game.onUpdateInterval(5000, function () {
 
 We can also use the ``||logic:not||`` block when assigning a boolean. So if we wanted to, we could assign a boolean to be the opposite of another boolean. Setting a boolean to the opposite value of itself, 'switches' the variable state from ``||logic:true||`` to ``||logic:false||`` (or false to true).
 
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-logic-boolean3)
+
 ## Example #3: Alternating Booleans
 
 ```blocks
 enum SpriteKind {
     Player,
+    Projectile,
     Enemy
 }
 let projectile: Sprite = null
@@ -183,7 +190,7 @@ game.onUpdateInterval(500, function () {
 
 ## Concept: ``||logic:and||`` and ``||logic:or||``
 
-Beyond just using a single boolean value, there are several ways in which we can combine these values. The most commonly used are ``||logic:and||`` and ``||logic:or||``. These are used similarly to the the use in English language; for example, the statement
+Beyond just using a single boolean value, there are several ways in which we can combine these values. The most commonly used are ``||logic:and||`` and ``||logic:or||``. These are used similarly to their usage in the English language; for example, the statement
 
 ### ~hint
 
@@ -202,6 +209,8 @@ Alternatively, the statement
 ### ~
 
 means that if **either** condition is true, I will go to the store. If I don't need to buy milk and I also don't need to buy eggs, then I will not end up going to the store.
+
+[![Link to Video](/static/thumbnail_play_video.png)](https://aka.ms/40546a-logic-boolean4)
 
 ## Example #4a: ``||logic:and||``
 
